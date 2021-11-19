@@ -11,20 +11,20 @@ BADFILE=${PDFFILE%pdf}failedtoconvert
 BADFILE4QH=CSIBadPDF.tif
 
 tiffcreated() {
-    # #Check the size of the tif - if 606 bytes then it is blank and we should consider it an error
-    # TIFFSIZE=`ls -l ${TIFFILE} | awk '{print $5}'`
-    # # Check we dont have too many pages and error if we do
-	# TOTALPAGES=` tiffinfo ${TIFFILE} | grep -c Page `
+    #Check the size of the tif - if 606 bytes then it is blank and we should consider it an error
+    TIFFSIZE=`ls -l ${TIFFILE} | awk '{print $5}'`
+    # Check we dont have too many pages and error if we do
+	TOTALPAGES=` tiffinfo ${TIFFILE} | grep -c Page `
 
-    # if (( ${TIFFSIZE} == 606 )) || (( ${TOTALPAGES} > 500 ));
-    # then
-    #    mv ${PDFFILE} ${BADFILE}
-    # else
+    if (( ${TIFFSIZE} == 606 )) || (( ${TOTALPAGES} > 500 ));
+    then
+       mv ${PDFFILE} ${BADFILE}
+    else
        mv ${TIFFILE} ${FINALFILE}
 
        # keep pdf files
        mv ${PDFFILE} ${PDFFILE%pdf}okkept
-# 	fi
+ 	fi
 }
 
 if [ ${#PDFFILE} -gt 11 ];
