@@ -20,7 +20,7 @@ RUN curl http://mirror.centos.org/centos/7/os/x86_64/Packages/libtiff-tools-4.0.
  # Copy all batch jobs to ORACLE_HOME
  COPY --chown=weblogic image-converters ${ORACLE_HOME}/
 
- RUN cd ${ORACLE_HOME} && mkdir ghostscript && cd ghostscript && \
+ RUN cd ${ORACLE_HOME} && mkdir ghostscript && mkdir JetPcl && mkdir EFAttachments && cd ghostscript && \
     curl -L https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs926/ghostscript-9.26-linux-x86_64.tgz -o gs.tgz && \
     tar -xvzf *.tgz && rm *.tgz && \
     curl -L https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs918/ghostscript-9.18-linux-x86_64.tgz -o gs.tar && \

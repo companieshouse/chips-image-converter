@@ -17,7 +17,7 @@
 
 for suffix in 0 1 2 3 4 5 6 7 8 9
 do
-   $1/bulkpdf.sh $suffix &
+   ./bulkpdf.sh $suffix &
 #sleep 2
-#   $1/bulkpcl.sh $suffix &
+#  ./bulkpcl.sh $suffix &
 done

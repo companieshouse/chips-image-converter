@@ -1,4 +1,7 @@
 #!/bin/bash
+
+cd ${ORACLE_HOME}/EFAttachments
+
 while [ 1 ]
 do
 NAME=efatt*$1.pdf

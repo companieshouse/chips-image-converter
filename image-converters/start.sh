@@ -2,8 +2,6 @@
 
 cd ${0%/*}
 
-ENVNAME=${LOGNAME}
-
 #CHECK: Are there any processes already running?
 PIDLIST=`ps -fu ${ENVNAME} | grep -v grep | grep bulkpdf | awk '{print $2}'`
 if [ ! -z ${PIDLIST} ]; then
@@ -17,13 +15,8 @@ fi
 #   exit 1
 # fi
 
-CURRENTDIR=$PWD
-DOMAINROOT=/apps/bea/${ENVNAME}/${ENVNAME}domain/${EFATTDIR}
+echo Starting image-converters
 
-cd ${DOMAINROOT}
-
-echo Starting image-converters for ${ENVNAME}
-
-nohup ${CURRENTDIR}/runbulkpcl.sh ${CURRENTDIR} &
+nohup ./runbulkpcl.sh &
 echo
 
