@@ -11,7 +11,7 @@ do
 TIFFILE=temp${PDFFILE%pdf}tif
 FINALFILE=${PDFFILE%pdf}tif
 BADFILE=${PDFFILE%pdf}failedtoconvert
-BADFILE4QH=CSIBadPDF.tif
+BADFILE4QH=${ORACLE_HOME}/CSIBadPDF.tif
 
 tiffcreated() {
     #Check the size of the tif - if 606 bytes then it is blank and we should consider it an error
@@ -47,7 +47,7 @@ then
                 tiffcreated
             else
                 ## Try to convert with an older version of ghostscript - the older version sometimes work for those that fail.
-				${ORACLE_HOME}/{GS_ALT_VERSION} -dPDFSTOPONERROR -dSHORTERRORS -dQUIET -dBATCH -dSAFER -dNOPAUSE -sCompression=g4 -sDEVICE=tiffscaled -r200 -sOutputFile=${TIFFILE} ${PDFFILE}
+				${ORACLE_HOME}/${GS_ALT_VERSION} -dPDFSTOPONERROR -dSHORTERRORS -dQUIET -dBATCH -dSAFER -dNOPAUSE -sCompression=g4 -sDEVICE=tiffscaled -r200 -sOutputFile=${TIFFILE} ${PDFFILE}
 				EXITSTATUS=$?
 				
 				if (( ${EXITSTATUS} == 0 )) && [[ -f ${TIFFILE} ]];

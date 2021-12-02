@@ -21,3 +21,4 @@ do
 #sleep 2
 #  ./bulkpcl.sh $suffix &
 done
+wait

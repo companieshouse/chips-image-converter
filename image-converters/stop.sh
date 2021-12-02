@@ -1,5 +1,5 @@
 #!/bin/bash
-PIDLIST=`ps -fu $LOGNAME | grep -v grep | grep bulkpdf | awk '{print $2}'`
+PIDLIST=`ps -ef | grep bulkpdf | grep -v grep | awk '{print $2}'`
 
 for bulkpid in $PIDLIST
 do

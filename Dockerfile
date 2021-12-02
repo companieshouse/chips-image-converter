@@ -2,8 +2,7 @@ FROM 300288021642.dkr.ecr.eu-west-2.amazonaws.com/ch-oraclelinux:1.0.0
 
  ENV ORACLE_HOME=/apps/oracle \
      GS_MAIN_VERSION=ghostscript/ghostscript-9.26-linux-x86_64/gs-926-linux-x86_64 \
-     GS_ALT_VERSION=ghostscript/ghostscript-9.18-linux-x86_64/gs-918-linux-x86_64 
-
+     GS_ALT_VERSION=ghostscript/ghostscript-9.18-linux-x86_64/gs-918-linux_x86_64
 
 RUN curl http://mirror.centos.org/centos/7/os/x86_64/Packages/libtiff-tools-4.0.3-35.el7.x86_64.rpm -o libtiff-tools.rpm && \ 
     yum -y install libtiff-tools.rpm && \
