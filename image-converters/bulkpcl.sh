@@ -1,14 +1,6 @@
-#!/usr/sunos/bin/ksh
+#!/bin/bash
 
-#if [ ! -d /tmp/ ]; then
-#  mkdir /tmp/300dpi
-#fi
-#if [ ! -d /tmp/$1 ]; then
-#  mkdir /tmp/$1
-#fi
-#if [ ! -d /tmp/$1/300dpi ]; then
-#  mkdir /tmp/$1/300dpi
-#fi
+cd ${ORACLE_HOME}/EFAttachments
 
 while [ 1 ]
 do
@@ -22,11 +14,7 @@ BADFILE4QH=CSIBadPCL.tif
 
 if [ ${#FILE} -gt 11 ];
 then
-        #/apps/bea/JetPcl/JetPcl -N -Y/tmp/$1 -P/tmp/$1 -S/tmp/$1 -IPCL -OTIF ${FILE} ${TIFFILE}
-        #/apps/bea/JetPcl/JetPcl -N -d300 -IPCL -OTIF ${FILE} ${TIFFILE}
-        ## worked but revised below for upgrade
-		#/apps/bea/JetPcl/JetPcl -N -T/tmp/JetPcl -M/tmp/JetPcl -S/tmp/JetPcl -P/tmp/JetPcl -Y/tmp/JetPcl -d300 -Ipcl -Otif ${FILE} ${TIFFILE}
-        /apps/bea/JetPcl/JetPcl -N -T/tmp/JetPcl -M/tmp/JetPcl/mac -S/tmp/JetPcl/sft -P/tmp/JetPcl/pat -Y/tmp/JetPcl/sym -d300 -Ipcl -Otif ${FILE} ${TIFFILE}
+        /apps/oracle/JetPcl/JetPcl -N -T/tmp/JetPcl -M/tmp/JetPcl/mac -S/tmp/JetPcl/sft -P/tmp/JetPcl/pat -Y/tmp/JetPcl/sym -d300 -Ipcl -Otif ${FILE} ${TIFFILE}
         
 		EXITSTATUS=$?
 

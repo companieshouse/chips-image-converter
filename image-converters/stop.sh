@@ -10,13 +10,13 @@ kill $bulkpid
 
 done
 
-# PIDLIST=`ps -fu $LOGNAME | grep -v grep | grep bulkpcl | awk '{print $2}'`
+ PIDLIST=`ps -fu $LOGNAME | grep -v grep | grep bulkpcl | awk '{print $2}'`
 
-# for bulkpid in $PIDLIST
-# do
+ for bulkpid in $PIDLIST
+ do
 
-# echo Killing $bulkpid
-# ps -ef | grep $bulkpid
-# kill $bulkpid
+ echo Killing $bulkpid
+ ps -ef | grep $bulkpid
+ kill $bulkpid
 
-# done
+ done
