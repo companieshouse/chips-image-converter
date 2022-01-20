@@ -14,7 +14,10 @@ BADFILE4QH=CSIBadPCL.tif
 
 if [ ${#FILE} -gt 11 ];
 then
-        /apps/oracle/JetPcl/JetPcl -N -T/tmp/JetPcl -M/tmp/JetPcl/mac -S/tmp/JetPcl/sft -P/tmp/JetPcl/pat -Y/tmp/JetPcl/sym -d300 -Ipcl -Otif ${FILE} ${TIFFILE}
+        # testing changes supplied by TechKnow, we are writing now from tmp to to JetPcl installation directory
+        /apps/oracle/JetPcl/JetPcl -N -Ipcl -Otif ${FILE} ${TIFFILE}
+        
+        #/apps/oracle/JetPcl/JetPcl -N -T/tmp/JetPcl -M/tmp/JetPcl/mac -S/tmp/JetPcl/sft -P/tmp/JetPcl/pat -Y/tmp/JetPcl/sym -d300 -Ipcl -Otif ${FILE} ${TIFFILE}
         
 		EXITSTATUS=$?
 
