@@ -11,7 +11,7 @@ kill $bulkpid
 done
 
 # On AWS stopping runbulkpcl will stop the container, so add to exclusion. Running this script will re-start processes.  
- PIDLIST=`ps -fu $LOGNAME | grep -v grep | grep -v runbulkpcl |grep bulkpcl | awk '{print $2}'`
+ PIDLIST=`ps -ef | grep -v grep | grep -v runbulkpcl |grep bulkpcl | awk '{print $2}'`
 
  for bulkpid in $PIDLIST
  do
