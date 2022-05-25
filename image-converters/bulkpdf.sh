@@ -66,7 +66,7 @@ fi
 done
 
 # Remove old files
-${ORACLE_HOME}/clean-old-files.sh
+${ORACLE_HOME}/clean-old-files.sh $1
 
 sleep 2 
 done
