@@ -7,7 +7,7 @@ ENV ORACLE_HOME=/apps/oracle \
 
 RUN curl http://mirror.centos.org/centos/7/os/x86_64/Packages/libtiff-tools-4.0.3-35.el7.x86_64.rpm -o libtiff-tools.rpm && \ 
     yum -y install libtiff-tools.rpm && \
-    yum -y install poppler-util && \
+    yum -y install poppler-utils && \
     yum -y install vim && \
     yum clean all && \
     rm -rf /var/cache/yum && \
