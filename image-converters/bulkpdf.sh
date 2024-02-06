@@ -53,7 +53,7 @@ if [ ${#PDFFILE} -gt 11 ]; then
 			### another check added -- razielj
 			##
 			elif [ "${EXITSTATUS}" != 0 ]; then
-				pdftocairo -pdf -r 300 "${PDFFILE}" "${REPFILE}" && gs -dNOPAUSE -q -r300x300 -sDEVICE=tiffg4 -dBATCH -sOutputFile="${TIFFILE}" "${REPFILE}"
+				pdftocairo -pdf -r 300 "${PDFFILE}" "${REPFILE}" && ${ORACLE_HOME}/${GS_ALT_VERSION} -dNOPAUSE -q -r300x300 -sDEVICE=tiffg4 -dBATCH -sOutputFile="${TIFFILE}" "${REPFILE}"
 				rm -f "${REPFILE}"
 				EXITSTATUS=$?
 				elif [ "${EXITSTATUS}" == 0 ]; then
