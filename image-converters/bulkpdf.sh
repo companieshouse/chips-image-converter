@@ -17,7 +17,7 @@ BADFILE4QH=${ORACLE_HOME}/CSIBadPDF.tif
 tiffcreated() {
     #Check the size of the tif - if 606 bytes then it is blank and we should consider it an error
     TIFFSIZE=`ls -l ${TIFFILE} | awk '{print $5}'`
-	    # Check we dont have too many pages and error if we do
+	# Check we dont have too many pages and error if we do
 	TOTALPAGES=` tiffinfo ${TIFFILE} | grep -c Page `
 
     if (( ${TIFFSIZE} == 606 )) || (( ${TOTALPAGES} > 500 ));
