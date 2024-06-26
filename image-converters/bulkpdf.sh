@@ -17,7 +17,7 @@ BADFILE4QH=${ORACLE_HOME}/CSIBadPDF.tif
 tiffcreated() {
     #Check the size of the tif - if 606 bytes then it is blank and we should consider it an error
     TIFFSIZE=`ls -l ${TIFFILE} | awk '{print $5}'`
-    # Check we dont have too many pages and error if we do
+	# Check we dont have too many pages and error if we do
 	TOTALPAGES=` tiffinfo ${TIFFILE} | grep -c Page `
 
     if (( ${TIFFSIZE} == 606 )) || (( ${TOTALPAGES} > 500 ));
@@ -40,23 +40,23 @@ if [ ${#PDFFILE} -gt 11 ]; then
 		${ORACLE_HOME}/${GS_MAIN_VERSION} -dPDFSTOPONERROR -dSHORTERRORS -dQUIET -dBATCH -dSAFER -dNOPAUSE -sCompression=g4 -sDEVICE=tiffscaled -r200 -sOutputFile=${TIFFILE} ${PDFFILE}
 		EXITSTATUS=$?
 
-		if (( ${EXITSTATUS} == 0 )) && [[ -f ${TIFFILE} ]]; then
+		if (( ${EXITSTATUS} == 0 )) && [[ -f ${TIFFILE} ]];
+		then
 			tiffcreated
-		elif [ "${EXITSTATUS}" != 0 ]; then
+		else
 			### Try to convert with an older version of ghostscript - the older version sometimes work for those that fail.
 			##
 			${ORACLE_HOME}/${GS_ALT_VERSION} -dPDFSTOPONERROR -dSHORTERRORS -dQUIET -dBATCH -dSAFER -dNOPAUSE -sCompression=g4 -sDEVICE=tiffscaled -r200 -sOutputFile=${TIFFILE} ${PDFFILE}
 		  	EXITSTATUS=$?
 
-			if (( ${EXITSTATUS} == 0 )) && [[ -f ${TIFFILE} ]]; then
-				 tiffcreated
-			### another check added -- razielj
-			##
-			elif [ "${EXITSTATUS}" != 0 ]; then
+			if (( ${EXITSTATUS} == 0 )) && [[ -f ${TIFFILE} ]];
+			then
+				tiffcreated
+			else
 				pdftocairo -pdf -r 300 "${PDFFILE}" "${REPFILE}" && ${ORACLE_HOME}/${GS_ALT_VERSION} -dNOPAUSE -q -r300x300 -sDEVICE=tiffg4 -dBATCH -sOutputFile="${TIFFILE}" "${REPFILE}"
-				rm -f "${REPFILE}"
 				EXITSTATUS=$?
-				elif [ "${EXITSTATUS}" == 0 ]; then
+				rm -f "${REPFILE}"
+				if (( ${EXITSTATUS} == 0 )); then
 					tiffcreated
 				else
 					### If PDF conversion fails with non zero exit, copy warning image CSIBadPDF.tif for QHers into place
@@ -67,6 +67,7 @@ if [ ${#PDFFILE} -gt 11 ]; then
 					mv ${PDFFILE} ${BADFILE}
 					rm -f ${TIFFILE}
 					rm -f "${REPFILE}"
+				fi
 			fi
 		fi
 	fi
