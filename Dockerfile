@@ -5,13 +5,14 @@ ENV ORACLE_HOME=/apps/oracle \
     GS_ALT_VERSION=ghostscript/ghostscript-9.18-linux-x86_64/gs-918-linux_x86_64 \
     GS_PCL=ghostscript/ghostpcl-9.53.1-linux-x86_64/gpcl6-9531-linux-x86_64
 
-RUN curl http://mirror.centos.org/centos/7/os/x86_64/Packages/libtiff-tools-4.0.3-35.el7.x86_64.rpm -o libtiff-tools.rpm && \ 
+RUN curl https://vault.centos.org/7.9.2009/os/x86_64/Packages/libtiff-tools-4.0.3-35.el7.x86_64.rpm -o libtiff-tools.rpm && \ 
     yum -y install libtiff-tools.rpm && \
+    yum -y install https://archives.fedoraproject.org/pub/archive/epel/7/x86_64/Packages/e/epel-release-7-14.noarch.rpm && \
     yum -y install poppler-utils && \
     yum -y install vim && \
+    yum -y install tesseract && \
     yum clean all && \
-    rm -rf /var/cache/yum && \
-    rm libtiff-tools.rpm
+    rm -rf /var/cache/yum 
 
 RUN mkdir -p /apps && \
     chmod a+xr /apps && \
