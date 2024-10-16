@@ -78,4 +78,10 @@ done
 ##
 ${ORACLE_HOME}/clean-old-files.sh $1
 sleep 2 
+
+### Move failed files to retry again
+##
+${ORACLE_HOME}/move-failed-files.sh $1
+sleep 2 
+
 done
