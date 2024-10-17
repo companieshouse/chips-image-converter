@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Move files that have been previously failed to convert and to retry after 20 minutes
-for i in $(find efatt*$1.failedtoconvert -mmin +20)
+for i in $(find efatt*$1.failedtoconvert -mmin +20 2>/dev/null)
 do
   file_name=$(basename ${i} | cut -d. -f1)
   pdf_file_name="$file_name.pdf"
