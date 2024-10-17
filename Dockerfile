@@ -24,6 +24,7 @@ USER weblogic
 COPY --chown=weblogic image-converters ${ORACLE_HOME}/
 
 RUN cd ${ORACLE_HOME} && mkdir ghostscript && mkdir EFAttachments && cd ghostscript && \
+    chmod a+xr ${ORACLE_HOME}/*.sh && \
     curl -L https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs926/ghostscript-9.26-linux-x86_64.tgz -o gs.tgz && \
     tar -xvzf *.tgz && rm *.tgz && \
     curl -L https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs918/ghostscript-9.18-linux-x86_64.tgz -o gs.tar && \
