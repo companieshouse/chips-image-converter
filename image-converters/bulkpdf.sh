@@ -13,6 +13,7 @@ FINALFILE=${PDFFILE%pdf}tif
 REPFILE=rep_"${PDFFILE}"
 BADFILE=${PDFFILE%pdf}failedtoconvert
 BADFILE4QH=${ORACLE_HOME}/CSIBadPDF.tif
+BADFILE_MORE_PAGES=${PDFFILE%pdf}more_pages
 
 tiffcreated() {
     #Check the size of the tif - if 606 bytes then it is blank and we should consider it an error
@@ -20,7 +21,10 @@ tiffcreated() {
 	# Check we dont have too many pages and error if we do
 	TOTALPAGES=` tiffinfo ${TIFFILE} | grep -c Page `
 
-    if (( ${TIFFSIZE} == 606 )) || (( ${TOTALPAGES} > 500 ));
+	if (( ${TOTALPAGES} > 500 ));
+    then
+      mv ${PDFFILE} ${BADFILE_MORE_PAGES}
+    elif (( ${TIFFSIZE} == 606 )) ;
     then
       mv ${PDFFILE} ${BADFILE}
     else
